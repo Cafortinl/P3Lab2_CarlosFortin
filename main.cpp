@@ -16,6 +16,18 @@ int detMenor(int* a, int pos1, int size){
 	return pos2;
 }
 
+int detMayor(int* a, int pos1, int size){
+	int mayor = 0, pos2 = 0;
+        for(int i=pos1;i<size;i++){
+                if(a[i]<mayor){
+                        mayor=a[i];
+                        pos2=i;
+                }
+        }
+        return pos2;
+
+}
+
 int* llenarArreglo(int size){
 	int* a=new int[size];
 	for(int i=0;i<size;i++){
@@ -55,7 +67,7 @@ int ordenarArregloMenor(int* a, int pos, int size){
                 int temporal = a[pos1];
                 a[pos1] = a[pos];
                 a[pos] = temporal;
-                return 1*ordenarArreglo(a,pos+1,size);
+                return 1*ordenarArregloMenor(a,pos+1,size);
         }
 
 }
@@ -69,7 +81,7 @@ int ordenarArregloMayor(int* a, int pos, int size){
                 int temporal = a[pos1];
                 a[pos1] = a[pos];
                 a[pos] = temporal;
-                return 1*ordenarArreglo(a,pos+1,size);
+                return 1*ordenarArregloMayor(a,pos+1,size);
         }
 
 }
@@ -90,6 +102,17 @@ bool validarNum(int num){
 	return valido;
 }
 
+int Kaprekar(int num, int iterador){
+	if(num == 6174 || iterador == 7)
+		return num;
+	else{
+		int n1=ordenarArregloMayor(toArray(num),0,4);
+		int n2=ordenarArregloMenor(toArray(num),0,4);
+
+		cout << n1 << " - " << n2 << n1-n2 << endl;
+		return Kaprekar(n1-n2,iterador+1);
+	}
+}
 
 int ordenarArreglo(int* a, int pos, int size){
         if(pos == size){
@@ -106,7 +129,6 @@ int ordenarArreglo(int* a, int pos, int size){
 		imprimirArreglo(a,size);
 		return 1*ordenarArreglo(a,pos+1,size);
 	}
-
 }
 
 int MCD(int num1, int num2){
@@ -172,6 +194,8 @@ void ejercicios(int opcion){
                               	cout << "El numero ingresado no es valido, vuelva a ingresarlo: ";
                                	cin >> numero;
                         }
+			Kaprekar(numero,1);
+
                        	break;
 		}
                 default:{
