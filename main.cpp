@@ -1,19 +1,9 @@
+//Carlos Fortin 2020-01-31
+//11911015
 #include <iostream>
 #include <cstdlib>
 
 using namespace std;
-
-/*bool validarNum(int num){
-	bool valido=false;
-	int n1 , n2, n3, n4;
-	n1 = num / 1000;
-	n2 = (num / 100) - n1 * 10;
-	n3 = (num/10) - ((n1*100)+(n2*10));
-	n4 = num - ((n1 * 1000) + (n2 * 100) + (n3 * 10));
-	int a[4];
-
-	
-}*/
 
 int detMenor(int* a, int pos1, int size){
 	int menor = 500, pos2 = 0;
@@ -40,6 +30,48 @@ void imprimirArreglo(int* a, int size){
 		cout << "[" << a[i] << "] ";
 	}
 	cout << endl;
+}
+
+int* toArray(int num){
+	int n1 , n2, n3, n4;
+        n1 = num / 1000;
+        n2 = (num / 100) - n1 * 10;
+        n3 = (num/10) - ((n1*100)+(n2*10));
+        n4 = num - ((n1 * 1000) + (n2 * 100) + (n3 * 10));
+        int a[4]={n1,n2,n3,n4};
+	return a;
+}	
+
+int toInt(int* a){
+	return (a[0] * 1000) + (a[1] * 100) + (a[2] * 10) + a[3];
+}
+
+int ordenarArregloMenor(int* a, int pos, int size){
+        if(pos == size){
+                return toInt(a);
+        }
+        else{
+                int pos1 = detMenor(a,pos,4);
+                int temporal = a[pos1];
+                a[pos1] = a[pos];
+                a[pos] = temporal;
+                return 1*ordenarArreglo(a,pos+1,size);
+        }
+
+}
+
+int ordenarArregloMayor(int* a, int pos, int size){
+        if(pos == size){
+                return toInt(a);
+        }
+        else{
+                int pos1 = detMayor(a,pos,4);
+                int temporal = a[pos1];
+                a[pos1] = a[pos];
+                a[pos] = temporal;
+                return 1*ordenarArreglo(a,pos+1,size);
+        }
+
 }
 
 bool validarNum(int num){
