@@ -1,6 +1,14 @@
 #include <iostream>
+#include <cstdlib>
 
 using namespace std;
+
+int* llenarArreglo(int size){
+	int a[size];
+	for(int i=0;i<size;i++){
+		rand r=
+	}
+}
 
 int MCD(int num1, int num2){
 	if(num2 == 0)
@@ -40,10 +48,18 @@ void ejercicios(int opcion){
 			if(numero1 > numero2)
 				cout << "mcd(" << numero1 << ", " << numero2 << ") = " << MCD(numero1,numero2) << endl;
 			else
-				cout << "mcd(" << numero2 << ", " << numero1 << "( = " <<  MCD(numero2,numero1) << endl;
+				cout << "mcd(" << numero1 << ", " << numero2 << ") = " <<  MCD(numero2,numero1) << endl;
 
 			break;
 		case 2:
+			int size;
+			cout << "Ingrese la longitud deseada: ";
+			cin >> size;
+			while(size <=0){
+				cout << "El numero no puede ser negativo ni 0. Ingrese un nuevo numero: ";
+				cin >> size;
+			}
+			int* array=llenarArreglo(size);
 			break;
 		case 3:
 			break;
