@@ -17,9 +17,10 @@ int detMenor(int* a, int pos1, int size){
 }
 
 int detMayor(int* a, int pos1, int size){
+	//cout<<"entro3"<<endl;
 	int mayor = 0, pos2 = 0;
         for(int i=pos1;i<size;i++){
-                if(a[i]<mayor){
+                if(a[i]>mayor){
                         mayor=a[i];
                         pos2=i;
                 }
@@ -59,7 +60,8 @@ int toInt(int* a){
 }
 
 int ordenarArregloMenor(int* a, int pos, int size){
-        if(pos == size){
+       // cout<<"entro2"<<endl;
+	if(pos == size){
                 return toInt(a);
         }
         else{
@@ -73,10 +75,12 @@ int ordenarArregloMenor(int* a, int pos, int size){
 }
 
 int ordenarArregloMayor(int* a, int pos, int size){
-        if(pos == size){
+       // cout<<"entro1"<<endl;
+	if(pos == size){
                 return toInt(a);
         }
         else{
+		//cout<<"entro1.1"<<endl;
                 int pos1 = detMayor(a,pos,4);
                 int temporal = a[pos1];
                 a[pos1] = a[pos];
@@ -194,7 +198,7 @@ void ejercicios(int opcion){
                               	cout << "El numero ingresado no es valido, vuelva a ingresarlo: ";
                                	cin >> numero;
                         }
-			Kaprekar(numero,1);
+			//Kaprekar(numero,1);
 
                        	break;
 		}
