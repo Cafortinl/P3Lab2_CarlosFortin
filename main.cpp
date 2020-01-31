@@ -2,12 +2,11 @@
 
 using namespace std;
 
-int MCD(int num1, int num2, int div){
+int MCD(int num1, int num2){
 	if(num2 == 0)
 		return num1;
-	else{
-		return MCD(num2,(num1%num2)*10,1);
-	}
+	else
+		return MCD(num2,num1%num2);
 }
 
 void opciones(){
@@ -16,7 +15,7 @@ void opciones(){
 	cout << "1. Ejercicio 1" << endl;
 	cout << "2. Ejercicio 2" << endl;
 	cout << "3. Ejercicio 3" << endl;
-	cout << "0. Ejercicio 4" << endl;
+	cout << "0. Salir" << endl;
 }
 
 void ejercicios(int opcion){
@@ -39,9 +38,9 @@ void ejercicios(int opcion){
                         }
 			
 			if(numero1 > numero2)
-				cout << "mcd(" << numero1 << ", " << numero2 << MCD(numero1,numero2, 1) << endl;
+				cout << "mcd(" << numero1 << ", " << numero2 << ") = " << MCD(numero1,numero2) << endl;
 			else
-				cout << "mcd(" << numero2 << ", " << numero1 << MCD(numero2,numero1, 1) << endl;
+				cout << "mcd(" << numero2 << ", " << numero1 << "( = " <<  MCD(numero2,numero1) << endl;
 
 			break;
 		case 2:
@@ -58,6 +57,8 @@ int main(){
 	int opcion = 1;
 	while(opcion != 0){
 		opciones();
+		cin >> opcion;
+		ejercicios(opcion);
 	}
 	cout << "Fin del programa" << endl;
 
