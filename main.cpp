@@ -3,11 +3,49 @@
 
 using namespace std;
 
-int* llenarArreglo(int size){
-	int a[size];
-	for(int i=0;i<size;i++){
-		rand r=
+int detMenor(int* a, int pos1, int size){
+	int menor = 500, pos2 = 0;
+	for(int i=pos1;i<size;i++){
+		if(a[i]<menor){
+			menor=a[i];
+			pos2=i;
+		}
 	}
+	return pos2;
+}
+
+int* llenarArreglo(int size){
+	int* a=new int[size];
+	for(int i=0;i<size;i++){
+		int r=(rand()%100);
+		a[i]=r;
+	}
+	return a;
+}
+
+void imprimirArreglo(int* a, int size){
+	for(int i=0;i<size;i++){
+		cout << "[" << a[i] << "] ";
+	}
+	cout << endl;
+}
+
+int ordenarArreglo(int* a, int pos, int size){
+        if(pos == size){
+		cout << "Ronda " << pos+1 << ":" << endl;
+		imprimirArreglo(a,size);
+		return 0;
+	}
+	else{
+		int pos1 = detMenor(a,pos,size);
+		int temporal = a[pos1];
+		a[pos1] = a[pos];
+		a[pos] = temporal;
+		cout << "Ronda " << pos+1 << ":" << endl;
+		imprimirArreglo(a,size);
+		return 1*ordenarArreglo(a,pos+1,size);
+	}
+
 }
 
 int MCD(int num1, int num2){
@@ -51,6 +89,7 @@ void ejercicios(int opcion){
 				cout << "mcd(" << numero1 << ", " << numero2 << ") = " <<  MCD(numero2,numero1) << endl;
 
 			break;
+
 		case 2:
 			int size;
 			cout << "Ingrese la longitud deseada: ";
@@ -59,13 +98,18 @@ void ejercicios(int opcion){
 				cout << "El numero no puede ser negativo ni 0. Ingrese un nuevo numero: ";
 				cin >> size;
 			}
-			int* array=llenarArreglo(size);
+			int* arreglo=llenarArreglo(size);
+			imprimirArreglo(arreglo,size);
+			ordenarArreglo(arreglo,0,size);
 			break;
-		case 3:
+
+		/*case 3:
+			
 			break;
+
 		default:
 			cout << "La opcion ingresada no es valida" << endl;
-			break;
+			break;*/
 	}
 }
 
