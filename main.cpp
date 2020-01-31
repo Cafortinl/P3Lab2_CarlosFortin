@@ -3,6 +3,18 @@
 
 using namespace std;
 
+/*bool validarNum(int num){
+	bool valido=false;
+	int n1 , n2, n3, n4;
+	n1 = num / 1000;
+	n2 = (num / 100) - n1 * 10;
+	n3 = (num/10) - ((n1*100)+(n2*10));
+	n4 = num - ((n1 * 1000) + (n2 * 100) + (n3 * 10));
+	int a[4];
+
+	
+}*/
+
 int detMenor(int* a, int pos1, int size){
 	int menor = 500, pos2 = 0;
 	for(int i=pos1;i<size;i++){
@@ -29,6 +41,23 @@ void imprimirArreglo(int* a, int size){
 	}
 	cout << endl;
 }
+
+bool validarNum(int num){
+        bool valido=true;
+        int n1 , n2, n3, n4;
+        n1 = num / 1000;
+        n2 = (num / 100) - n1 * 10;
+        n3 = (num/10) - ((n1*100)+(n2*10));
+        n4 = num - ((n1 * 1000) + (n2 * 100) + (n3 * 10));
+        int a[4]={n1,n2,n3,n4};
+	imprimirArreglo(a,4);
+	for(int i=0;i<5;i++){
+		if(a[i] == a[i-1] && a[i])
+			valido=false;
+	}
+	return valido;
+}
+
 
 int ordenarArreglo(int* a, int pos, int size){
         if(pos == size){
@@ -65,8 +94,9 @@ void opciones(){
 }
 
 void ejercicios(int opcion){
+	
 	switch(opcion){
-		case 1:
+		case 1:{
 			int numero1, numero2;
 			cout << "Ingrese el primer numero: ";
 			cin >> numero1;
@@ -87,10 +117,9 @@ void ejercicios(int opcion){
 				cout << "mcd(" << numero1 << ", " << numero2 << ") = " << MCD(numero1,numero2) << endl;
 			else
 				cout << "mcd(" << numero1 << ", " << numero2 << ") = " <<  MCD(numero2,numero1) << endl;
-
 			break;
-
-		case 2:
+		       }
+		case 2:{
 			int size;
 			cout << "Ingrese la longitud deseada: ";
 			cin >> size;
@@ -102,14 +131,21 @@ void ejercicios(int opcion){
 			imprimirArreglo(arreglo,size);
 			ordenarArreglo(arreglo,0,size);
 			break;
-
-		/*case 3:
-			
-			break;
-
-		default:
-			cout << "La opcion ingresada no es valida" << endl;
-			break;*/
+		       }
+		 case 3:{
+                        int numero, n1, n2, n3, n4;
+                        cout << "Ingrese un numero de 4 cifras: ";
+                        cin >> numero;
+                       	while(validarNum(numero) == false || (numero < 1 || numero > 9999)){
+                              	cout << "El numero ingresado no es valido, vuelva a ingresarlo: ";
+                               	cin >> numero;
+                        }
+                       	break;
+		}
+                default:{
+                        cout << "La opcion ingresada no es valida" << endl;
+                        break;
+		}
 	}
 }
 
