@@ -51,12 +51,20 @@ int* toArray(int num){
         n2 = (num / 100) - n1 * 10;
         n3 = (num/10) - ((n1*100)+(n2*10));
         n4 = num - ((n1 * 1000) + (n2 * 100) + (n3 * 10));
-        int a[4]={n1,n2,n3,n4};
+		int* a = new int[4];
+		//cout << "Se creo un puntero a entero" << endl;
+        a[0] = n1;
+		a[1] = n2;
+		a[2] = n3;
+		a[3] = n4;
 	return a;
 }	
 
 int toInt(int* a){
-	return (a[0] * 1000) + (a[1] * 100) + (a[2] * 10) + a[3];
+	int num =  (a[0] * 1000) + (a[1] * 100) + (a[2] * 10) + a[3];
+	delete[] a;
+	//cout << "Se borro un puntero a entero" << endl;
+	return num;
 }
 
 int ordenarArregloMenor(int* a, int pos, int size){
@@ -111,9 +119,11 @@ int Kaprekar(int num, int iterador){
 		return num;
 	else{
 		int n1=ordenarArregloMayor(toArray(num),0,4);
+		//cout << "1" << endl;
 		int n2=ordenarArregloMenor(toArray(num),0,4);
+		//cout << "2" << endl;
 
-		cout << n1 << " - " << n2 << n1-n2 << endl;
+		cout << n1 << " - " << n2 << " = " << n1-n2 << endl;
 		return Kaprekar(n1-n2,iterador+1);
 	}
 }
@@ -198,7 +208,7 @@ void ejercicios(int opcion){
                               	cout << "El numero ingresado no es valido, vuelva a ingresarlo: ";
                                	cin >> numero;
                         }
-			//Kaprekar(numero,1);
+			Kaprekar(numero,1);
 
                        	break;
 		}
